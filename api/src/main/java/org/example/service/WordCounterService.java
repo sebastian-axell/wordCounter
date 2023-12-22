@@ -32,13 +32,32 @@ public class WordCounterService {
         return wordList;
     }
 
-    public Boolean addWord(String newWord){
+    public HashMap<String,String> addWord(String newWord){
+        HashMap<String, String> returnBody = new HashMap<>();
         if (wordIsAlphabetic(newWord)){
             String translatedWord = translatorService.translateWord(newWord);
             words.compute(translatedWord, (word, currentCount) -> (currentCount == null) ? 1 : currentCount + 1);
-            return true;
+            returnBody.put("result", "SUCCESS");
+            returnBody.put("message", "Successfully added \'" + newWord + "\' to the word counter.");
+            return returnBody;
+        } else{
+            returnBody.put("result", "FAILED");
+            returnBody.put("message", ErrorCode.NON_ALPHABETICAL_CHARACTERS.getErrorMessage());
         }
-        return false;
+        return returnBody;
+    }
+
+    private enum ErrorCode {
+        NON_ALPHABETICAL_CHARACTERS("String can only contain alphabetical characters");
+
+        private String errorMessage;
+
+        public String getErrorMessage(){return errorMessage;}
+
+        private ErrorCode(String errorMessage){
+            this.errorMessage = errorMessage;
+        }
+
     }
 
 }

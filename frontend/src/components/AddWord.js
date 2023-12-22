@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { addWord } from '../api/wordCounterApi';
+import Modal from './Modal';
 
 
 export function AddWord({
   handleWordAdd
 }){
     const [word, setWord] = useState("");
+    const [response, setResponse] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const handleCloseModal = () =>{
+      setShowModal(false)
+    }
       return (
         <div className="mt-5 flex justify-center items-center flex-col gap-8 text-sm sm:text-lg">
           <div className="flex justify-center items-center gap-6">
@@ -23,11 +29,15 @@ export function AddWord({
                 //execute function to add new todo to the list
                 addWord(word).then(response=>{
                   handleWordAdd();
+                  console.log(response);
+                  setShowModal(true);
+                  setResponse(response);
                 })
               }}
             >
               Add word
             </button>
+            <Modal handleCloseModal={handleCloseModal} showModal={showModal} response={response}/>
           </div>
         </div>
       );

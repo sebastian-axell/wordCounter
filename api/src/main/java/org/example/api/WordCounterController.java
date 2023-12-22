@@ -26,9 +26,8 @@ public class WordCounterController {
     }
 
     @PostMapping(path="/addWord",
-    consumes = "application/json",
     produces = "application/json")
-    public Boolean addWord(@RequestBody String word){
+    public HashMap<String, String> addWord(@RequestBody String word){
         //Logger
         return wordCounterService.addWord(word.replace("\"", ""));
     }

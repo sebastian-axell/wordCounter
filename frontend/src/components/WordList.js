@@ -20,7 +20,7 @@ useEffect(() => {
 
   if (words.length >0){
       return (
-         <div className='flex justify-center'>
+         <div className='flex justify-center mt-3'>
           <div className="w-10/12 text-center flex items-center flex-col gap-1 text-sm sm:text-xl">
             <h1 className="text-white uppercase font-semibold sm:text-2xl text-lg">Word List</h1>
             <div className="w-10/12 backdrop-blur-lg px-3 py-5 grid grid-cols-2 text-white">
@@ -39,7 +39,7 @@ useEffect(() => {
     );
 }else{
     return (
-    <div className='text-white flex justify-center text-2xl'>
+    <div className='text-white flex justify-center text-2xl mt-10'>
         No words added yet. Add a word by clicking the Add word tab!
     </div>
     )
