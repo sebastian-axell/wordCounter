@@ -27,7 +27,6 @@ export function addWord(word){
     .then(response=>{
         if (response.status ===200){
             return response.json();
-            //do something
         }
         else{
             console.log(response.status);
