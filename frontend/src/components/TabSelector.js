@@ -10,8 +10,6 @@ import {
 import React from "react";
 import { useState} from 'react';
 
-
-
 export function TabSelector() {
     const [wordAdded, setWordAdded] = useState(true);
     const [activeTab, setActiveTab] = React.useState("html");
@@ -36,7 +34,7 @@ export function TabSelector() {
           className="rounded-none border-b border-blue bg-transparent p-0"
           indicatorProps={{
             className:
-              "bg-transparent border-b-2 border-yellow-100 shadow-none rounded-none",
+              "bg-transparent border-b-2 shadow-none rounded-none",
           }}
         >
           {tabs.map(({ label, value }) => (

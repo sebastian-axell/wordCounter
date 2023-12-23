@@ -38,24 +38,30 @@ public class WordCounterService {
             String translatedWord = translatorService.translateWord(newWord);
             words.compute(translatedWord, (word, currentCount) -> (currentCount == null) ? 1 : currentCount + 1);
             returnBody.put("result", "SUCCESS");
-            returnBody.put("message", "Successfully added \'" + newWord + "\' to the word counter.");
-            return returnBody;
         } else{
             returnBody.put("result", "FAILED");
-            returnBody.put("message", ErrorCode.NON_ALPHABETICAL_CHARACTERS.getErrorMessage());
+        }
+        switch (returnBody.get("result")){
+            case "SUCCESS":
+                returnBody.put("message", ReturnBodyMessage.SUCCESS.getReturnMessage());
+                break;
+            case "FAILED":
+                returnBody.put("message", ReturnBodyMessage.NON_ALPHABETICAL_CHARACTERS.getReturnMessage());
+                break;
         }
         return returnBody;
     }
 
-    private enum ErrorCode {
-        NON_ALPHABETICAL_CHARACTERS("String can only contain alphabetical characters");
+    private enum ReturnBodyMessage {
+        NON_ALPHABETICAL_CHARACTERS("String can only contain alphabetical characters"),
+        SUCCESS("Successfully added word to the counter");
 
-        private String errorMessage;
+        private String returnMessage;
 
-        public String getErrorMessage(){return errorMessage;}
+        public String getReturnMessage(){return returnMessage;}
 
-        private ErrorCode(String errorMessage){
-            this.errorMessage = errorMessage;
+        ReturnBodyMessage(String returnMessage){
+            this.returnMessage = returnMessage;
         }
 
     }

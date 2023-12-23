@@ -2,12 +2,14 @@ package org.example.service;
 
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Component
 public class TranslatorService {
 
     public String translateWord(String word){
         String translatedWord;
-        switch (word){
+        switch (word.toLowerCase()){
             case "flor":
                 translatedWord = "flower";
                 break;

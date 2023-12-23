@@ -26,10 +26,8 @@ export function AddWord({
             <button
               className="h-full px-5 py-2 bg-yellow-50 text-black font-medium rounded-md"
               onClick={() => {
-                //execute function to add new todo to the list
                 addWord(word).then(response=>{
                   handleWordAdd();
-                  console.log(response);
                   setShowModal(true);
                   setResponse(response);
                 })
