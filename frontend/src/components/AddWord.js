@@ -12,21 +12,26 @@ export function AddWord({
     const handleCloseModal = () =>{
       setShowModal(false)
     }
+    const handleInputAdd = () => {
+      document.getElementById("addInput").value="";
+    }
+
       return (
-        <div className="mt-5 flex justify-center items-center flex-col gap-8 text-sm sm:text-lg">
-          <div className="flex justify-center items-center gap-6">
-            <input
-              className="sm:w-72 w-34 border-2 rounded-md px-3 py-3 backdrop-blur-lg text-black"
+        <div className="mt-5 flex justify-center text-sm sm:text-lg">
+          <div className="flex w-3/6 h-9">
+            <input className="bg-gray-400 text-white w-9/12 rounded-l-lg pl-5 placeholder-white outline-none"
               value={word}
               onChange={(e) => {
                 setWord(e.target.value);
               }}
-              placeholder="Enter a new word"
+              placeholder="Word to add to counter"
+              id='addInput'
             />
             <button
-              className="h-full px-5 py-2 bg-yellow-50 text-black font-medium rounded-md"
+              className="bg-gray-800 text-white w-3/12 border-l-3 border-l border-indigo-600 rounded-r-lg"
               onClick={() => {
                 addWord(word).then(response=>{
+                  handleInputAdd();
                   handleWordAdd();
                   setShowModal(true);
                   setResponse(response);
